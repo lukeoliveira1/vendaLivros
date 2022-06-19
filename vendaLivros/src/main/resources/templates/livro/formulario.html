@@ -1,0 +1,55 @@
+<html>
+
+<head th:replace="~{base :: head}"></head>
+<!-- IMPORTANDO O HEAD DO TEMPLATE BASE -->
+
+<body>
+	<div th:replace="~{base :: logo}"></div>
+	<!-- IMPORTANDO O BODY DO TEMPLATE BASE -->
+
+	<div class="container">
+		<div class="jumbotron mb-0">
+			<h1 class="display-4">Cadastrar Livro</h1>
+		</div>
+
+		<form th:object="${livroDto}" class="card-body" action="/livro/novo"
+			method="POST">
+
+			<!-- th:object É A INTEGRAÇÃO DO FORM AO THYMELEAF PARA SALVAR OS DADOS ESCRITOS PARA O BEAN VALIDATION -->
+
+			<div class="form-group">
+				<label for="titulo">Titulo</label> <input th:field="*{titulo}"
+					th:errorClass="is-invalid" class="form-control"
+					placeholder="titulo livro" />
+			</div>
+
+			<div class="form-group">
+				<label for="valor">Valor</label> <input th:field="*{valor}"
+					th:errorClass="is-invalid" class="form-control"
+					placeholder="valor livro" />
+			</div>
+
+			<div class="form-group">
+				<label for="titulo">Ano de Publicação</label> <input th:field="*{anoPublicacao}"
+					th:errorClass="is-invalid" class="form-control"
+					placeholder="anoPublicacao livro" />
+			</div>
+
+			<div class="form-group">
+				<label for="titulo">Editora</label> <input th:field="*{nomeEditora}"
+					th:errorClass="is-invalid" class="form-control"
+					placeholder="nomeEditora livro" />
+			</div>
+
+			<div class="form-group">
+				<label for="categoria.nome">Categoria</label> <input th:field="*{categoria.nome}"
+					th:errorClass="is-invalid" class="form-control"
+					placeholder="categoria.nome livro" />
+			</div>
+
+			<!--  O "*{}" permite acessar um atributo/fieldsForm pelo th:object, no caso, requisicaoNovoPedido -->
+			<!-- O Thymeleaf gerencia o value(+id+name), logo, se o usuário já estiver escrito e avançado
+				 se faltar algum campo, o value já escrito ainda vai ficar salvo  -->
+
+			<button class="btn btn-primary" type="submit">Cadastrar</button>
+		</form>

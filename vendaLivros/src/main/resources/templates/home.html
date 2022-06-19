@@ -1,0 +1,58 @@
+<html>
+
+<!-- IMPORTANDO OS FRAGMENTOS TEMPLATE BASE!!!! -->
+<head th:replace="~{base :: head}"></head>
+
+<body>
+
+	<!-- IMPORTANDO OS FRAGMENTOS TEMPLATE BASE!!!! -->
+	<div th:replace="~{base :: logo}"></div>
+
+	<div class="container">
+		<div class="row">
+
+			<div class="card" style="width: 18rem;" th:each="livro : ${livros}">
+
+				<div class="card-header">
+					Titulo
+					<div>
+						<textarea class="form-control" th:text="${livro.titulo}">título do livro</textarea>
+					</div>
+				</div>
+
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">Valor: <span
+						th:if="${livro.valor} != null"
+						th:text="${'R$ ' + #numbers.formatDecimal(livro.valor, 3, 'POINT', 2, 'COMMA')}">200,99
+					</span>
+					</li>
+
+					<li class="list-group-item">Ano de Publicação
+						<div>
+							<textarea class="form-control" th:text="${livro.anoPublicacao}">
+						ano de publicação do livro</textarea>
+						</div>
+					</li>
+
+					<li class="list-group-item">Nome da Editora
+						<div>
+							<textarea class="form-control" th:text="${livro.nomeEditora}">nome da editora do livro</textarea>
+						</div>
+					</li>
+
+					<li class="list-group-item">Categoria
+						<div>
+							<textarea class="form-control" th:text="${livro.categoria.nome}">categoria do livro</textarea>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<a class="btn btn-primary" th:href="@{/livro/update/{id}(id = ${livro.id})}">Editar</a>
+						<a class="btn btn-primary" th:href="@{/livro/deletar/{id}(id = ${livro.id})}">Deletar</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

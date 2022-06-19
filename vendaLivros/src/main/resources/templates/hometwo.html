@@ -1,0 +1,52 @@
+<html>
+
+<!-- IMPORTANDO OS FRAGMENTOS TEMPLATE BASE!!!! -->
+<head th:replace="~{base :: head}"></head>
+
+<body>
+
+	<!-- IMPORTANDO OS FRAGMENTOS TEMPLATE BASE!!!! -->
+	<div th:replace="~{base :: logo}"></div>
+
+	<div class="container">
+
+		<div class="card-body" th:each="livro : ${livros}">
+			<div class="row">
+				<div class="col-12 col-sm-8 mb-3">
+					<div class="row ">
+
+						<div>Titulo</div>
+						<div>
+							<textarea class="form-control" th:text="${livro.titulo}">título do livro</textarea>
+						</div>
+
+						<div class="col-md-5">
+							Valor: <span th:if="${livro.valor} != null"
+								th:text="${'R$ ' + #numbers.formatDecimal(livro.valor, 3, 'POINT', 2, 'COMMA')}">200,99</span>
+							<!-- numbers.formatCurrency  formata o valor dependendo da linguagem
+									já esse format.Decimal é pra reais mesmo  -->
+						</div>
+
+						<div>Ano de Publicação</div>
+						<div>
+							<textarea class="form-control" th:text="${livro.anoPublicacao}">
+						ano de publicação do livro</textarea>
+						</div>
+
+						<div>Nome da Editora</div>
+						<div>
+							<textarea class="form-control" th:text="${livro.nomeEditora}">nome da editora do livro</textarea>
+						</div>
+					</div>
+
+					<div>Categoria</div>
+					<div>
+						<textarea class="form-control" th:value="${livro.categoria.nome}">categoria do livro</textarea>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
